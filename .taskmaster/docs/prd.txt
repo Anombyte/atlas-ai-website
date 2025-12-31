@@ -1,0 +1,81 @@
+# Product Requirements Document: Google Workspace Automated Setup
+
+## Overview
+Fully orchestrated setup of Google Workspace for Atlas-AI business, using hierarchical agents, TaskMaster tracking, and parallel execution. All human-required actions are batched to a single final task.
+
+## Goals
+1. Configure Google Workspace with 3-account model (admin@, ops@, atlas@)
+2. Prepare all DNS records for email authentication (MX, SPF, DKIM, DMARC)
+3. Set up Gmail MCP integration for AI email sending
+4. Generate completion dashboard
+5. Send notification email when complete
+6. Minimize human interaction by batching all manual steps
+
+## Architecture
+- **Orchestration**: TaskMaster MCP for task tracking
+- **Execution**: Hierarchical agents spawned via tmux
+- **Monitoring**: Eternal Watcher for progress tracking
+- **Notification**: Gmail MCP for completion email
+
+## Deliverables
+
+### Phase 1: Preparation (Automatable)
+1. Verify atlas-ai/ project structure exists
+2. Validate all documentation is complete
+3. Generate DNS record application script
+4. Create OAuth credential request template
+5. Prepare DKIM key generation instructions
+
+### Phase 2: Gmail MCP Configuration (Automatable)
+1. Check current Gmail MCP status in ~/.claude.json
+2. Document OAuth flow requirements
+3. Prepare token storage location
+4. Create email sending test script
+
+### Phase 3: Validation & Testing (Automatable)
+1. Create DNS record validation script
+2. Create email deliverability test plan
+3. Prepare DMARC monitoring setup
+4. Generate test email templates
+
+### Phase 4: Dashboard Generation (Automatable)
+1. Create HTML dashboard showing:
+   - Setup progress (all phases)
+   - DNS record status (ready to apply)
+   - Account configuration checklist
+   - Next steps for human action
+2. Host dashboard locally
+
+### Phase 5: Human Action Block (FINAL - Manual)
+This single task contains ALL human-required actions:
+1. Purchase Google Workspace (if not done)
+2. Create accounts in Admin Console: admin@, ops@, atlas@
+3. Enable 2FA at organization level
+4. Generate DKIM key in Admin Console
+5. Apply DNS records at registrar (MX, SPF, DKIM, DMARC)
+6. Create OAuth credentials in Google Cloud Console
+7. Authorize Gmail MCP with atlas@ account
+8. Test email sending
+
+### Phase 6: Completion (Automatable)
+1. Verify Gmail MCP can send
+2. Generate final status dashboard
+3. Send completion email to hayden.bruinsma@gmail.com
+
+## Success Criteria
+- All preparation tasks completed automatically
+- Human action checklist is clear and complete
+- Dashboard accessible showing full status
+- Completion email successfully sent
+
+## Constraints
+- DO NOT attempt to access Google Admin Console (requires human)
+- DO NOT attempt to modify DNS directly (requires registrar access)
+- DO NOT expose any credentials in logs or dashboards
+- ALL manual steps batched to Task 5 (Human Action Block)
+
+## Technical Notes
+- Gmail MCP uses OAuth 2.0 with refresh tokens
+- DNS records are templates until human applies them
+- Dashboard uses Tailwind CSS via CDN
+- Email sent via existing Gmail MCP (hayden.bruinsma@gmail.com account)
