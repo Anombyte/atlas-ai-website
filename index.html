@@ -207,6 +207,175 @@
             padding: 0 24px;
         }
 
+        /* ATLAS Logo Text */
+        .atlas-logo-text {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .atlas-logo-text .atlas-orange {
+            background: linear-gradient(135deg, #F4AB65 0%, #E09A4F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .atlas-logo-text .atlas-blue {
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            animation: slideInRight 1s ease-out;
+        }
+
+        /* Pixel Grid Background Effect */
+        .pixel-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(244, 171, 101, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(244, 171, 101, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse 80% 50% at 50% 50%, black 0%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 50%, black 0%, transparent 70%);
+            pointer-events: none;
+            animation: gridFloat 20s linear infinite;
+        }
+
+        /* Floating Particles */
+        .floating-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 1px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            left: 15%;
+            top: 25%;
+            background: rgba(244, 171, 101, 0.4);
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            left: 25%;
+            top: 60%;
+            background: rgba(74, 144, 226, 0.4);
+            animation-delay: -3s;
+        }
+
+        .particle:nth-child(3) {
+            right: 20%;
+            top: 35%;
+            background: rgba(244, 171, 101, 0.3);
+            animation-delay: -7s;
+        }
+
+        .particle:nth-child(4) {
+            right: 35%;
+            bottom: 30%;
+            background: rgba(74, 144, 226, 0.3);
+            animation-delay: -11s;
+        }
+
+        .particle:nth-child(5) {
+            left: 40%;
+            top: 20%;
+            background: rgba(244, 171, 101, 0.25);
+            animation-delay: -4s;
+            width: 4px;
+            height: 4px;
+        }
+
+        .particle:nth-child(6) {
+            right: 15%;
+            bottom: 45%;
+            background: rgba(74, 144, 226, 0.35);
+            animation-delay: -9s;
+            width: 10px;
+            height: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes gridFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-10px) translateX(5px);
+            }
+            50% {
+                transform: translateY(0) translateX(10px);
+            }
+            75% {
+                transform: translateY(10px) translateX(5px);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, -100px) rotate(90deg);
+            }
+            50% {
+                transform: translate(200px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(100px, 100px) rotate(270deg);
+            }
+        }
+
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 400;
@@ -727,13 +896,25 @@
 
     <section class="hero">
         <div class="hero-bg"></div>
+        <div class="pixel-grid"></div>
         <div class="hero-content">
+            <div class="atlas-logo-text">
+                <span class="atlas-orange">AT</span><span class="atlas-blue">LAS</span>
+            </div>
             <h1 class="serif">AI that works for your business</h1>
             <p>Custom automation and AI tools for Australian businesses. Save time, cut costs, compete smarter.</p>
             <div class="cta-group">
                 <a href="#contact" class="btn btn-white">Start a conversation</a>
                 <a href="#services" class="btn btn-secondary">See our work</a>
             </div>
+        </div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
     </section>
 
