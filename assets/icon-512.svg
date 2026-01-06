@@ -1,0 +1,7 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Transparent -->
+  <!-- Safe area: 70% inner content area (358x358 centered) -->
+  <rect x="77" y="77" width="358" height="358" fill="#2D5A4A" rx="64"/>
+  <!-- AI Text -->
+  <text x="256" y="256" font-family="Arial, sans-serif" font-weight="bold" font-size="128" fill="#F4AB65" text-anchor="middle" dominant-baseline="central">AI</text>
+</svg>

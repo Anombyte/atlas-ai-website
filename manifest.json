@@ -10,16 +10,16 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/assets/icon-192.png",
+      "src": "/assets/icon-192.svg",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
-      "src": "/assets/icon-512.png",
+      "src": "/assets/icon-512.svg",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ],
   "categories": ["business", "productivity", "technology"],
@@ -29,21 +29,21 @@
       "short_name": "Start",
       "description": "Start a conversation with Atlas AI",
       "url": "/#contact",
-      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/assets/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" }]
     },
     {
       "name": "Services",
       "short_name": "Services",
       "description": "View our AI automation services",
       "url": "/#services",
-      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/assets/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" }]
     },
     {
       "name": "ROI Calculator",
       "short_name": "Calculator",
       "description": "Calculate your ROI with AI automation",
       "url": "/#roi",
-      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/assets/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" }]
     }
   ]
 }

@@ -10,6 +10,8 @@ const STATIC_CACHE = [
     '/index.html',
     '/manifest.json',
     '/assets/logo.svg',
+    '/assets/icon-192.svg',
+    '/assets/icon-512.svg',
     // Add other static assets as needed
 ];
 

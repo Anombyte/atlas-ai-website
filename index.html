@@ -12,11 +12,23 @@
     <meta name="description" content="Atlas AI - Custom AI tools and automation for Australian businesses. Save time, cut costs, and compete smarter.">
     <meta name="application-name" content="Atlas AI">
 
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' https://cdn.jsdelivr.net;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   img-src 'self' data: https:;
+                   font-src 'self' https://fonts.gstatic.com;
+                   connect-src 'self' https://formspree.io;
+                   object-src 'none';
+                   base-uri 'self';
+                   form-action 'self' https://formspree.io;">
+
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">
 
     <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/assets/icon-192.png">
+    <link rel="apple-touch-icon" href="/assets/icon-192.svg">
 
     <title>Atlas AI - AI That Works For Your Business</title>
 
@@ -1717,13 +1729,13 @@
 
                             <div class="form-group">
                                 <label for="name">Your name *</label>
-                                <input type="text" id="name" name="name" required placeholder="Jane Smith">
+                                <input type="text" id="name" name="name" required placeholder="Jane Smith" maxlength="100">
                                 <div class="error-message">Please enter your name</div>
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Work email *</label>
-                                <input type="email" id="email" name="email" required placeholder="jane@company.com.au">
+                                <input type="email" id="email" name="email" required placeholder="jane@company.com.au" maxlength="254">
                                 <div class="error-message">Please enter a valid email</div>
                             </div>
 
@@ -1822,7 +1834,7 @@
 
                             <div class="form-group">
                                 <label for="message">Tell us about your project (optional)</label>
-                                <textarea id="message" name="message" placeholder="What challenges are you facing? What would success look like?"></textarea>
+                                <textarea id="message" name="message" placeholder="What challenges are you facing? What would success look like?" maxlength="1000"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -2174,19 +2186,26 @@
                 // Calculate metrics
                 const monthlySavings = monthlyHours * hourlyRate;
                 const annualSavings = (monthlySavings * 12) - implementationCost;
-                const roi = ((annualSavings / implementationCost) * 100);
-                const monthlyBreakEven = implementationCost / monthlySavings;
-                const paybackMonths = Math.max(0, monthlyBreakEven);
+                // Fix: Guard against divide by zero for ROI
+                const roi = implementationCost > 0 ? ((annualSavings / implementationCost) * 100) : 0;
+                // Fix: Guard against divide by zero for payback, show "Never" if no savings
+                const monthlyBreakEven = monthlySavings > 0 ? (implementationCost / monthlySavings) : Infinity;
+                const paybackMonths = Number.isFinite(monthlyBreakEven) ? monthlyBreakEven : Infinity;
 
                 // Animate to new values
                 animateCounter(annualSavingsEl, previousAnnualSavings, Math.max(0, annualSavings), 500, '$');
                 animateCounter(roiValueEl, previousROI, Math.max(0, roi), 500, '', '%');
-                animateCounter(paybackPeriodEl, previousPayback, paybackMonths, 500);
+                // Fix: Handle infinite payback (show "Never")
+                if (!Number.isFinite(paybackMonths)) {
+                    paybackPeriodEl.textContent = 'Never';
+                } else {
+                    animateCounter(paybackPeriodEl, previousPayback, paybackMonths, 500);
+                }
 
                 // Store for next animation
                 previousAnnualSavings = Math.max(0, annualSavings);
                 previousROI = Math.max(0, roi);
-                previousPayback = paybackMonths;
+                previousPayback = Number.isFinite(paybackMonths) ? paybackMonths : 0;
             }
 
             // Listen for input changes
