@@ -25,12 +25,24 @@
         }
 
         :root {
+            /* Atlas AI Brand Colors */
+            --primary: #F4AB65;
+            --primary-dark: #E09A4F;
+            --primary-light: #F9C28A;
+
+            /* Neutrals */
             --cream: #FAF9F6;
             --warm-white: #FEFDFB;
             --charcoal: #1a1a1a;
             --muted: #666;
-            --accent: #2d5a4a;
-            --accent-light: #3d7a6a;
+            --muted-light: #999;
+
+            /* Semantic (using primary brand color) */
+            --accent: #F4AB65;
+            --accent-light: #F9C28A;
+            --accent-dark: #E09A4F;
+
+            /* Status colors */
             --error: #dc2626;
             --success: #059669;
         }
@@ -132,7 +144,7 @@
         .btn-primary:hover {
             background: var(--accent-light);
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(45, 90, 74, 0.3);
+            box-shadow: 0 10px 40px rgba(244, 171, 101, 0.4);
         }
 
         .btn-white {
@@ -182,7 +194,8 @@
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%),
+                linear-gradient(180deg, rgba(26,26,26,0.2) 0%, rgba(26,26,26,0.5) 100%),
+                linear-gradient(135deg, rgba(244, 171, 101, 0.15) 0%, rgba(224, 154, 79, 0.1) 100%),
                 url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80') center/cover;
         }
 
@@ -366,7 +379,7 @@
 
         /* Contact Section with Multi-Step Form */
         .contact-section {
-            background: linear-gradient(135deg, #1a3a2f 0%, #2d5a4a 100%);
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--primary-dark) 100%);
             color: white;
         }
 
