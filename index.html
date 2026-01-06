@@ -207,7 +207,63 @@
             padding: 0 24px;
         }
 
-        /* ATLAS Logo Text */
+        /* ATLAS Logo Full Recreation */
+        .atlas-logo-full {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .atlas-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 60px rgba(244, 171, 101, 0.4));
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .atlas-logo-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 40px rgba(244, 171, 101, 0.3));
+        }
+
+        .atlas-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            font-size: 96px;
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            line-height: 1;
+            z-index: 10;
+            text-align: center;
+            white-space: nowrap;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .atlas-text-overlay .atlas-orange {
+            color: #F4AB65;
+        }
+
+        .atlas-text-overlay .atlas-blue {
+            color: #4A90E2;
+        }
+
+        /* Original ATLAS Logo Text (fallback) */
         .atlas-logo-text {
             font-size: clamp(4rem, 12vw, 10rem);
             font-weight: 800;
@@ -896,10 +952,9 @@
 
     <section class="hero">
         <div class="hero-bg"></div>
-        <div class="pixel-grid"></div>
         <div class="hero-content">
-            <div class="atlas-logo-text">
-                <span class="atlas-orange">AT</span><span class="atlas-blue">LAS</span>
+            <div class="atlas-logo-full">
+                <img src="assets/logo.svg" alt="Atlas AI Logo" class="atlas-logo-img">
             </div>
             <h1 class="serif">AI that works for your business</h1>
             <p>Custom automation and AI tools for Australian businesses. Save time, cut costs, compete smarter.</p>
@@ -908,6 +963,7 @@
                 <a href="#services" class="btn btn-secondary">See our work</a>
             </div>
         </div>
+        <div class="pixel-grid"></div>
         <div class="floating-particles">
             <div class="particle"></div>
             <div class="particle"></div>
