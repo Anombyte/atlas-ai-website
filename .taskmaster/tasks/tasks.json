@@ -1,471 +1,479 @@
 {
-  "tasks": [
-    {
-      "id": "1",
-      "title": "Create PWA icon files (192x192 and 512x512)",
-      "description": "Create actual icon files at /assets/icon-192.png and /assets/icon-512.png. Use brand colors #2D5A4A (green) and #F4AB65 (orange). Simple 'AI' logo centered on transparent background.",
-      "status": "done",
-      "priority": "critical",
+  "master": {
+    "tasks": [
+      {
+        "id": "1",
+        "title": "Create PWA icon files (192x192 and 512x512)",
+        "description": "Create actual icon files at /assets/icon-192.png and /assets/icon-512.png. Use brand colors #2D5A4A (green) and #F4AB65 (orange). Simple 'AI' logo centered on transparent background.",
+        "status": "done",
+        "priority": "critical",
+        "tags": [
+          "pwa",
+          "icons",
+          "critical"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design 192x192 icon",
+            "description": "Create icon-192.png with safe-area padding for maskable display",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 1,
+            "title": "Design 512x512 icon",
+            "description": "Create icon-512.png with safe-area padding for maskable display",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 1,
+            "title": "Test PWA installation",
+            "description": "Test on mobile device (Chrome Android or Safari iOS) to verify installation works",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:06:11.767Z"
+      },
+      {
+        "id": "2",
+        "title": "Fix browser crash on rapid scroll",
+        "description": "Investigate and fix memory leak causing browser crashes during scroll testing. Suspected issue: IntersectionObserver or scroll event listeners not being cleaned up properly.",
+        "status": "done",
+        "priority": "critical",
+        "tags": [
+          "performance",
+          "memory",
+          "critical"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 2,
+            "title": "Identify memory leak source",
+            "description": "Use Chrome DevTools Memory profiler to identify leaking objects",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Fix event listener cleanup",
+            "description": "Ensure all scroll/touch listeners use passive: true and are properly removed",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Disconnect IntersectionObservers",
+            "description": "Disconnect all IntersectionObservers when not needed (e.g., when element leaves viewport)",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Test rapid scrolling",
+            "description": "Test 100+ rapid scroll events without crash",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:11:50.693Z"
+      },
+      {
+        "id": "3",
+        "title": "Fix ROI calculator payback logic error",
+        "description": "When annualSavings = 0, payback shows '20.0 months' instead of 'Never'. Add guard: if (monthlySavings <= 0) { paybackPeriodEl.textContent = 'Never'; return; }",
+        "status": "done",
+        "priority": "critical",
+        "tags": [
+          "bug",
+          "calculator",
+          "critical"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 3,
+            "title": "Add guard for zero/negative savings",
+            "description": "Add condition to check monthlySavings <= 0 before calculating payback",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Test with zero savings",
+            "description": "Test with hours=5, rate=$50, cost=$5000 → should show 'Never'",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Verify no NaN/Infinity",
+            "description": "Ensure no NaN or Infinity values in any ROI field",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:05:09.350Z"
+      },
+      {
+        "id": "4",
+        "title": "Add Content Security Policy meta tag",
+        "description": "Add CSP meta tag to <head> for XSS protection. Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;",
+        "status": "done",
+        "priority": "critical",
+        "tags": [
+          "security",
+          "csp",
+          "critical"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 4,
+            "title": "Add CSP meta tag",
+            "description": "Add <meta http-equiv='Content-Security-Policy' content='...'> to <head>",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Test Three.js with CSP",
+            "description": "Verify Three.js still loads with CSP in place",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Check for CSP violations",
+            "description": "Verify no CSP violations in browser console",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:06:11.768Z"
+      },
+      {
+        "id": "5",
+        "title": "Fix Service Worker cache (add icon files)",
+        "description": "Update sw.js STATIC_CACHE array to include '/assets/icon-192.png' and '/assets/icon-512.png'. Currently only has 4 items, missing icons.",
+        "status": "done",
+        "priority": "critical",
+        "tags": [
+          "pwa",
+          "service-worker",
+          "critical"
+        ],
+        "dependencies": [
+          "1"
+        ],
+        "subtasks": [
+          {
+            "id": 5,
+            "title": "Add icons to STATIC_CACHE",
+            "description": "Add '/assets/icon-192.png' and '/assets/icon-512.png' to sw.js STATIC_CACHE array",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 5,
+            "title": "Test service worker install",
+            "description": "Verify service worker installs without errors",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 5,
+            "title": "Test offline functionality",
+            "description": "Test PWA offline mode to ensure assets are cached",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:06:11.770Z"
+      },
+      {
+        "id": "6",
+        "title": "Add SRI hash to Three.js CDN script",
+        "description": "Generate sha384 SRI hash for Three.js v0.160.0 and add integrity + crossorigin attributes to script tag.",
+        "status": "done",
+        "priority": "critical",
+        "tags": [
+          "security",
+          "sri",
+          "critical"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 6,
+            "title": "Generate SRI hash",
+            "description": "Use OpenSSL: curl -s https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js | openssl dgst -sha384 -binary | openssl base64 -A",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 6,
+            "title": "Add integrity attribute",
+            "description": "Add integrity='sha384-[HASH]' and crossorigin='anonymous' to Three.js script tag",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 6,
+            "title": "Verify script loads",
+            "description": "Test that Three.js still loads with SRI in place",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:11:07.686Z"
+      },
+      {
+        "id": "7",
+        "title": "Fix ROI calculator division by zero",
+        "description": "Add guard for implementationCost = 0 case. Change: const roi = implementationCost > 0 ? ((annualSavings / implementationCost) * 100) : 0;",
+        "status": "done",
+        "priority": "high",
+        "tags": [
+          "bug",
+          "calculator",
+          "high"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 7,
+            "title": "Add guard for zero cost",
+            "description": "Add ternary check for implementationCost > 0 before calculating ROI",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 7,
+            "title": "Test with zero cost",
+            "description": "Test with implementationCost = 0 → should show '0%' or 'N/A'",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:05:09.354Z"
+      },
+      {
+        "id": "8",
+        "title": "Add missing security headers",
+        "description": "Add security headers via GitHub Pages configuration. Headers needed: Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options, X-XSS-Protection, Referrer-Policy, Permissions-Policy.",
+        "status": "done",
+        "priority": "high",
+        "tags": [
+          "security",
+          "headers",
+          "high"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 8,
+            "title": "Research GitHub Pages headers support",
+            "description": "Check if GitHub Pages supports custom headers. Document workarounds if not.",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 8,
+            "title": "Add headers or document limitations",
+            "description": "Add headers via _config.yml or custom 404.html, or document GitHub Pages limitations",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 8,
+            "title": "Verify headers",
+            "description": "Use curl -I or browser DevTools to verify headers",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:12:43.691Z"
+      },
+      {
+        "id": "9",
+        "title": "Add form input validation (maxlength)",
+        "description": "Add maxlength attributes to form inputs: name=100, email=254, message=1000. Prevents DoS via long inputs.",
+        "status": "done",
+        "priority": "high",
+        "tags": [
+          "security",
+          "forms",
+          "high"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 9,
+            "title": "Add maxlength to name field",
+            "description": "Add maxlength='100' to name input",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 9,
+            "title": "Add maxlength to email field",
+            "description": "Add maxlength='254' to email input",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 9,
+            "title": "Add maxlength to message field",
+            "description": "Add maxlength='1000' to message textarea",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 9,
+            "title": "Test validation",
+            "description": "Test with 1000+ char input → should be rejected or trimmed",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:07:06.674Z"
+      },
+      {
+        "id": "10",
+        "title": "Implement CSS custom properties for theming",
+        "description": "Define CSS custom properties at :root for theming (--bg-primary, --fg-primary, --glass-bg, etc.). Update dark/light theme to use CSS vars instead of class switching.",
+        "status": "done",
+        "priority": "high",
+        "tags": [
+          "css",
+          "theming",
+          "high"
+        ],
+        "dependencies": [],
+        "subtasks": [
+          {
+            "id": 10,
+            "title": "Define CSS custom properties",
+            "description": "Add :root { --bg-primary: #...; --fg-primary: #...; --glass-bg: #...; }",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 10,
+            "title": "Update theme toggle to use vars",
+            "description": "Update JavaScript to set CSS properties instead of classes",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 10,
+            "title": "Test theme persistence",
+            "description": "Verify theme persists on page refresh via localStorage",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 10,
+            "title": "Test prefers-color-scheme",
+            "description": "Test prefers-color-scheme media query still works",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:13:15.014Z"
+      },
+      {
+        "id": "11",
+        "title": "Update Three.js to non-deprecated build",
+        "description": "Update Three.js CDN link from deprecated build/three.min.js to recommended module build or newer import path.",
+        "status": "done",
+        "priority": "medium",
+        "tags": [
+          "threejs",
+          "deprecation",
+          "medium"
+        ],
+        "dependencies": [
+          "6"
+        ],
+        "subtasks": [
+          {
+            "id": 11,
+            "title": "Research recommended Three.js import",
+            "description": "Find current recommended import path for Three.js v0.160+",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 11,
+            "title": "Update CDN link",
+            "description": "Update script tag to use new import path",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 11,
+            "title": "Verify 3D features work",
+            "description": "Test all 3D features still work with new import",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:13:51.428Z"
+      },
+      {
+        "id": "12",
+        "title": "Expand Service Worker runtime caching",
+        "description": "Expand service worker to include runtime caching for images, fonts, and other dynamic assets. Currently only caches 4 static files.",
+        "status": "done",
+        "priority": "medium",
+        "tags": [
+          "pwa",
+          "service-worker",
+          "medium"
+        ],
+        "dependencies": [
+          "5"
+        ],
+        "subtasks": [
+          {
+            "id": 12,
+            "title": "Add runtime caching for images",
+            "description": "Implement stale-while-revalidate for image assets",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 12,
+            "title": "Add runtime caching for fonts",
+            "description": "Implement cache-first for font assets",
+            "status": "pending",
+            "parentId": "undefined"
+          },
+          {
+            "id": 12,
+            "title": "Test offline functionality",
+            "description": "Test comprehensive offline mode with all assets cached",
+            "status": "pending",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2026-01-06T08:13:52.907Z"
+      }
+    ],
+    "metadata": {
+      "version": "1.0.0",
+      "lastModified": "2026-01-06T08:13:52.908Z",
+      "taskCount": 12,
+      "completedCount": 12,
       "tags": [
-        "pwa",
-        "icons",
-        "critical"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 1.1,
-          "title": "Design 192x192 icon",
-          "description": "Create icon-192.png with safe-area padding for maskable display",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 1.2,
-          "title": "Design 512x512 icon",
-          "description": "Create icon-512.png with safe-area padding for maskable display",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 1.3,
-          "title": "Test PWA installation",
-          "description": "Test on mobile device (Chrome Android or Safari iOS) to verify installation works",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ],
-      "updatedAt": "2026-01-06T08:06:11.767Z"
-    },
-    {
-      "id": "2",
-      "title": "Fix browser crash on rapid scroll",
-      "description": "Investigate and fix memory leak causing browser crashes during scroll testing. Suspected issue: IntersectionObserver or scroll event listeners not being cleaned up properly.",
-      "status": "pending",
-      "priority": "critical",
-      "tags": [
-        "performance",
-        "memory",
-        "critical"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 2.1,
-          "title": "Identify memory leak source",
-          "description": "Use Chrome DevTools Memory profiler to identify leaking objects",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 2.2,
-          "title": "Fix event listener cleanup",
-          "description": "Ensure all scroll/touch listeners use passive: true and are properly removed",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 2.3,
-          "title": "Disconnect IntersectionObservers",
-          "description": "Disconnect all IntersectionObservers when not needed (e.g., when element leaves viewport)",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 2.4,
-          "title": "Test rapid scrolling",
-          "description": "Test 100+ rapid scroll events without crash",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "title": "Fix ROI calculator payback logic error",
-      "description": "When annualSavings = 0, payback shows '20.0 months' instead of 'Never'. Add guard: if (monthlySavings <= 0) { paybackPeriodEl.textContent = 'Never'; return; }",
-      "status": "done",
-      "priority": "critical",
-      "tags": [
-        "bug",
-        "calculator",
-        "critical"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 3.1,
-          "title": "Add guard for zero/negative savings",
-          "description": "Add condition to check monthlySavings <= 0 before calculating payback",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 3.2,
-          "title": "Test with zero savings",
-          "description": "Test with hours=5, rate=$50, cost=$5000 → should show 'Never'",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 3.3,
-          "title": "Verify no NaN/Infinity",
-          "description": "Ensure no NaN or Infinity values in any ROI field",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ],
-      "updatedAt": "2026-01-06T08:05:09.350Z"
-    },
-    {
-      "id": "4",
-      "title": "Add Content Security Policy meta tag",
-      "description": "Add CSP meta tag to <head> for XSS protection. Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;",
-      "status": "done",
-      "priority": "critical",
-      "tags": [
-        "security",
-        "csp",
-        "critical"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 4.1,
-          "title": "Add CSP meta tag",
-          "description": "Add <meta http-equiv='Content-Security-Policy' content='...'> to <head>",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 4.2,
-          "title": "Test Three.js with CSP",
-          "description": "Verify Three.js still loads with CSP in place",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 4.3,
-          "title": "Check for CSP violations",
-          "description": "Verify no CSP violations in browser console",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ],
-      "updatedAt": "2026-01-06T08:06:11.768Z"
-    },
-    {
-      "id": "5",
-      "title": "Fix Service Worker cache (add icon files)",
-      "description": "Update sw.js STATIC_CACHE array to include '/assets/icon-192.png' and '/assets/icon-512.png'. Currently only has 4 items, missing icons.",
-      "status": "done",
-      "priority": "critical",
-      "tags": [
-        "pwa",
-        "service-worker",
-        "critical"
-      ],
-      "dependencies": [
-        "1"
-      ],
-      "subtasks": [
-        {
-          "id": 5.1,
-          "title": "Add icons to STATIC_CACHE",
-          "description": "Add '/assets/icon-192.png' and '/assets/icon-512.png' to sw.js STATIC_CACHE array",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 5.2,
-          "title": "Test service worker install",
-          "description": "Verify service worker installs without errors",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 5.3,
-          "title": "Test offline functionality",
-          "description": "Test PWA offline mode to ensure assets are cached",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ],
-      "updatedAt": "2026-01-06T08:06:11.770Z"
-    },
-    {
-      "id": "6",
-      "title": "Add SRI hash to Three.js CDN script",
-      "description": "Generate sha384 SRI hash for Three.js v0.160.0 and add integrity + crossorigin attributes to script tag.",
-      "status": "pending",
-      "priority": "critical",
-      "tags": [
-        "security",
-        "sri",
-        "critical"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 6.1,
-          "title": "Generate SRI hash",
-          "description": "Use OpenSSL: curl -s https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js | openssl dgst -sha384 -binary | openssl base64 -A",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 6.2,
-          "title": "Add integrity attribute",
-          "description": "Add integrity='sha384-[HASH]' and crossorigin='anonymous' to Three.js script tag",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 6.3,
-          "title": "Verify script loads",
-          "description": "Test that Three.js still loads with SRI in place",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ]
-    },
-    {
-      "id": "7",
-      "title": "Fix ROI calculator division by zero",
-      "description": "Add guard for implementationCost = 0 case. Change: const roi = implementationCost > 0 ? ((annualSavings / implementationCost) * 100) : 0;",
-      "status": "done",
-      "priority": "high",
-      "tags": [
-        "bug",
-        "calculator",
-        "high"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 7.1,
-          "title": "Add guard for zero cost",
-          "description": "Add ternary check for implementationCost > 0 before calculating ROI",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 7.2,
-          "title": "Test with zero cost",
-          "description": "Test with implementationCost = 0 → should show '0%' or 'N/A'",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ],
-      "updatedAt": "2026-01-06T08:05:09.354Z"
-    },
-    {
-      "id": "8",
-      "title": "Add missing security headers",
-      "description": "Add security headers via GitHub Pages configuration. Headers needed: Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options, X-XSS-Protection, Referrer-Policy, Permissions-Policy.",
-      "status": "pending",
-      "priority": "high",
-      "tags": [
-        "security",
-        "headers",
-        "high"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 8.1,
-          "title": "Research GitHub Pages headers support",
-          "description": "Check if GitHub Pages supports custom headers. Document workarounds if not.",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 8.2,
-          "title": "Add headers or document limitations",
-          "description": "Add headers via _config.yml or custom 404.html, or document GitHub Pages limitations",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 8.3,
-          "title": "Verify headers",
-          "description": "Use curl -I or browser DevTools to verify headers",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ]
-    },
-    {
-      "id": "9",
-      "title": "Add form input validation (maxlength)",
-      "description": "Add maxlength attributes to form inputs: name=100, email=254, message=1000. Prevents DoS via long inputs.",
-      "status": "done",
-      "priority": "high",
-      "tags": [
-        "security",
-        "forms",
-        "high"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 9.1,
-          "title": "Add maxlength to name field",
-          "description": "Add maxlength='100' to name input",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 9.2,
-          "title": "Add maxlength to email field",
-          "description": "Add maxlength='254' to email input",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 9.3,
-          "title": "Add maxlength to message field",
-          "description": "Add maxlength='1000' to message textarea",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 9.4,
-          "title": "Test validation",
-          "description": "Test with 1000+ char input → should be rejected or trimmed",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ],
-      "updatedAt": "2026-01-06T08:07:06.674Z"
-    },
-    {
-      "id": "10",
-      "title": "Implement CSS custom properties for theming",
-      "description": "Define CSS custom properties at :root for theming (--bg-primary, --fg-primary, --glass-bg, etc.). Update dark/light theme to use CSS vars instead of class switching.",
-      "status": "pending",
-      "priority": "high",
-      "tags": [
-        "css",
-        "theming",
-        "high"
-      ],
-      "dependencies": [],
-      "subtasks": [
-        {
-          "id": 10.1,
-          "title": "Define CSS custom properties",
-          "description": "Add :root { --bg-primary: #...; --fg-primary: #...; --glass-bg: #...; }",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 10.2,
-          "title": "Update theme toggle to use vars",
-          "description": "Update JavaScript to set CSS properties instead of classes",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 10.3,
-          "title": "Test theme persistence",
-          "description": "Verify theme persists on page refresh via localStorage",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 10.4,
-          "title": "Test prefers-color-scheme",
-          "description": "Test prefers-color-scheme media query still works",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ]
-    },
-    {
-      "id": "11",
-      "title": "Update Three.js to non-deprecated build",
-      "description": "Update Three.js CDN link from deprecated build/three.min.js to recommended module build or newer import path.",
-      "status": "pending",
-      "priority": "medium",
-      "tags": [
-        "threejs",
-        "deprecation",
-        "medium"
-      ],
-      "dependencies": [
-        "6"
-      ],
-      "subtasks": [
-        {
-          "id": 11.1,
-          "title": "Research recommended Three.js import",
-          "description": "Find current recommended import path for Three.js v0.160+",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 11.2,
-          "title": "Update CDN link",
-          "description": "Update script tag to use new import path",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 11.3,
-          "title": "Verify 3D features work",
-          "description": "Test all 3D features still work with new import",
-          "status": "pending",
-          "parentId": "undefined"
-        }
-      ]
-    },
-    {
-      "id": "12",
-      "title": "Expand Service Worker runtime caching",
-      "description": "Expand service worker to include runtime caching for images, fonts, and other dynamic assets. Currently only caches 4 static files.",
-      "status": "pending",
-      "priority": "medium",
-      "tags": [
-        "pwa",
-        "service-worker",
-        "medium"
-      ],
-      "dependencies": [
-        "5"
-      ],
-      "subtasks": [
-        {
-          "id": 12.1,
-          "title": "Add runtime caching for images",
-          "description": "Implement stale-while-revalidate for image assets",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 12.2,
-          "title": "Add runtime caching for fonts",
-          "description": "Implement cache-first for font assets",
-          "status": "pending",
-          "parentId": "undefined"
-        },
-        {
-          "id": 12.3,
-          "title": "Test offline functionality",
-          "description": "Test comprehensive offline mode with all assets cached",
-          "status": "pending",
-          "parentId": "undefined"
-        }
+        "master"
       ]
     }
-  ],
-  "metadata": {
-    "version": "1.0.0",
-    "lastModified": "2026-01-06T08:07:06.675Z",
-    "taskCount": 12,
-    "completedCount": 6,
-    "tags": [
-      "master"
-    ]
   }
 }

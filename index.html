@@ -24,6 +24,9 @@
                    base-uri 'self';
                    form-action 'self' https://formspree.io;">
 
+    <!-- Referrer Policy -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">
 
@@ -44,7 +47,9 @@
     <script src="https://app.cal.com/embed/embed.js" async></script>
 
     <!-- Three.js for 3D effects -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"
+            integrity="sha384-qOkzR5Ke/XkQxuGVJ9hpFEpDlcoLtWwVYhnJf06cLIZa2vaIptSqaubivErzmD5O"
+            crossorigin="anonymous"></script>
 
     <style>
         * {
@@ -1894,15 +1899,22 @@
     </footer>
 
     <script>
-        // Navbar scroll effect
+        // Navbar scroll effect - throttled and passive for performance
         const nav = document.getElementById('navbar');
+        let scrollTimeout = null;
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+            if (scrollTimeout === null) {
+                scrollTimeout = requestAnimationFrame(() => {
+                    if (window.scrollY > 50) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                    scrollTimeout = null;
+                });
             }
-        });
+        }, { passive: true });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
